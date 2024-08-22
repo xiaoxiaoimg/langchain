@@ -220,6 +220,7 @@ class PaiEasChatEndpoint(BaseChatModel):
         response = requests.post(
             self.eas_service_url, headers=headers, json=query_body, timeout=self.timeout
         )
+        return response.content
 
         if response.status_code != 200:
             raise Exception(
