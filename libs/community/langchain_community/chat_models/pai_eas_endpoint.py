@@ -220,14 +220,14 @@ class PaiEasChatEndpoint(BaseChatModel):
         response = requests.post(
             self.eas_service_url, headers=headers, json=query_body, timeout=self.timeout
         )
-
+        return response.content
         if response.status_code != 200:
             raise Exception(
                 f"Request failed with status code {response.status_code}"
                 f" and message {response.text}"
             )
 
-        return response.text
+        return response.content
 
     def _call_eas_stream(self, query_body: dict) -> Any:
         """Generate text from the eas service."""
