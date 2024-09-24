@@ -21,6 +21,8 @@ _import_attribute = create_importer(__package__, deprecated_lookups=DEPRECATED_L
 
 def __getattr__(name: str) -> Any:
     """Look up attributes dynamically."""
+    if name in DEPRECATED_LOOKUP:
+        raise AttributeError(f'The attribute {name} is deprecated. Please use the new import path.')
     return _import_attribute(name)
 
 
